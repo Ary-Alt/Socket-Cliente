@@ -12,7 +12,8 @@ export class ChatService {
   sendMessage(mensaje: string){ 
     const payload = { 
       de: 'Ariadna O.',
-      cuerpo: mensaje
+      cuerpo: mensaje,
+      color: 'lightseagreen'
     };
     this.wsService.emit('mensaje', payload);
   }
