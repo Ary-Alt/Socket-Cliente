@@ -12,7 +12,9 @@ export class WebsocketService {
     ) {
       this.checkStatus();
     }
+// dfff
 
+// gggg
     checkStatus(){
       this.socket.on('connect', () => {
         console.log("Conectado al servidor");
