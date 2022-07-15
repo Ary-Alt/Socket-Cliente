@@ -6,15 +6,12 @@ import { Usuario } from '../Classes/Usuario';
 })
 export class WebsocketService {
   public socketStatus = false;
-  public usuario?: Usuario;
+  public usuario!: Usuario;
   constructor(
     private socket: Socket,
     ) {
       this.checkStatus();
     }
-// dfff
-
-// gggg
     checkStatus(){
       this.socket.on('connect', () => {
         console.log("Conectado al servidor");
@@ -38,12 +35,30 @@ export class WebsocketService {
     loginWS( nombre: string)
     {
      
-      return new Promise<void>( ( resolve, reject) => {
+        return new Promise<void>( ( resolve, reject) => {
         this.emit('configurar-usuario', { nombre }, (resp:Response) => 
       {
-          resolve();
+         this.usuario = new Usuario(nombre);
+         this.guardarStorage();
+           resolve();
       });
       });
       
     }
-}
+    getUsuario()
+    {
+       return this.usuario;
+    }
+    
+    guardarStorage()
+    {
+      localStorage.setItem('usuario', JSON.stringify(this.usuario))
+    }  
+    cargarStorage()
+    {
+      if(localStorage.getItem('usuario'))
+      {
+        this.usuario = JSON.parse(localStorage.getItem('usuario')!);
+      }
+    }
+  }
