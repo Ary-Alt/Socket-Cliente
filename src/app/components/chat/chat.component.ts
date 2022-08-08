@@ -11,8 +11,12 @@ export class ChatComponent implements OnInit {
 
   texto='';
   mensajesSubscription: Subscription  = new Subscription;
-
+  
+  
   mensajes: any[]=[];
+  
+  
+  
   constructor(
     public chatService: ChatService
   ) { }
